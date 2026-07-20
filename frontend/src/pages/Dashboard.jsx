@@ -1,7 +1,9 @@
+import { useI18n } from '../hooks/useI18n'
 import { useState, useEffect } from 'react'
 import { events } from '../services/api'
 import { Radio, Users, Activity } from 'lucide-react'
 export default function Dashboard() {
+  const { t } = useI18n()
   const [recent, setRecent] = useState([])
   const [conns, setConns] = useState(0)
   useEffect(() => {
@@ -10,7 +12,7 @@ export default function Dashboard() {
   }, [])
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-6">{t('dashboard.title')}</h2>
       <div className="grid grid-cols-3 gap-4 mb-8">
         <div className="bg-white rounded-xl shadow-sm p-5 flex items-center gap-4"><div className="bg-rose-500 p-3 rounded-lg text-white"><Radio size={24} /></div><div><p className="text-sm text-gray-500">Eventos Recientes</p><p className="text-2xl font-bold">{recent.length}</p></div></div>
         <div className="bg-white rounded-xl shadow-sm p-5 flex items-center gap-4"><div className="bg-green-500 p-3 rounded-lg text-white"><Users size={24} /></div><div><p className="text-sm text-gray-500">Conexiones SSE</p><p className="text-2xl font-bold">{conns}</p></div></div>

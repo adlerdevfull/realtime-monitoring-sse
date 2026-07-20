@@ -2,64 +2,79 @@ import { createContext, useContext, useMemo, useState, useCallback } from 'react
 
 const messages = {
   "en": {
-    "appName": "Realtime Monitor",
-    "appTagline": "SSE event stream",
+    "appName": "Realtime SSE",
+    "appTagline": "Live event stream",
     "logout": "Log out",
+    "loading": "Loading…",
     "language": "Language",
     "login": {
-      "title": "Realtime Monitor",
-      "subtitle": "SSE event stream",
+      "title": "Realtime SSE",
+      "subtitle": "Live event stream",
       "email": "Email",
       "password": "Password",
       "submit": "Sign in",
       "loading": "Signing in…",
-      "error": "Invalid credentials"
+      "error": "Invalid credentials",
+      "hint": "admin@platform.test / password"
     },
     "nav": {
       "home": "Dashboard",
-      "events": "Events"
+      "stream": "SSE Stream",
+      "dispatch": "Dispatch"
     },
-    "dashboard": "Dashboard"
+    "dashboard": {
+      "title": "Dashboard"
+    }
   },
   "es": {
-    "appName": "Monitor en Tiempo Real",
-    "appTagline": "Stream SSE de eventos",
+    "appName": "SSE en Tiempo Real",
+    "appTagline": "Stream de eventos en vivo",
     "logout": "Cerrar sesión",
+    "loading": "Cargando…",
     "language": "Idioma",
     "login": {
-      "title": "Monitor en Tiempo Real",
-      "subtitle": "Stream SSE de eventos",
+      "title": "SSE en Tiempo Real",
+      "subtitle": "Stream de eventos en vivo",
       "email": "Email",
       "password": "Contraseña",
       "submit": "Iniciar sesión",
       "loading": "Entrando…",
-      "error": "Credenciales inválidas"
+      "error": "Credenciales inválidas",
+      "hint": "admin@platform.test / password"
     },
     "nav": {
       "home": "Dashboard",
-      "events": "Eventos"
+      "stream": "Stream SSE",
+      "dispatch": "Dispatch"
     },
-    "dashboard": "Dashboard"
+    "dashboard": {
+      "title": "Dashboard"
+    }
   },
   "pt": {
-    "appName": "Monitor em Tempo Real",
-    "appTagline": "Stream SSE de eventos",
+    "appName": "SSE em Tempo Real",
+    "appTagline": "Stream de eventos ao vivo",
     "logout": "Sair",
+    "loading": "Carregando…",
     "language": "Idioma",
     "login": {
-      "title": "Monitor em Tempo Real",
-      "subtitle": "Stream SSE de eventos",
+      "title": "SSE em Tempo Real",
+      "subtitle": "Stream de eventos ao vivo",
       "email": "Email",
       "password": "Senha",
       "submit": "Entrar",
       "loading": "Entrando…",
-      "error": "Credenciais inválidas"
+      "error": "Credenciais inválidas",
+      "hint": "admin@platform.test / password"
     },
     "nav": {
       "home": "Dashboard",
-      "events": "Eventos"
+      "stream": "Stream SSE",
+      "dispatch": "Dispatch"
     },
-    "dashboard": "Dashboard"
+    "dashboard": {
+      "title": "Dashboard"
+    }
   }
 }
 
@@ -86,7 +101,7 @@ export function I18nProvider({ children }) {
     for (const p of parts) cur = cur?.[p]
     return typeof cur === 'string' ? cur : key
   }, [locale])
-  const value = useMemo(() => ({ locale, setLocale, t, messages: messages[locale] }), [locale, setLocale, t])
+  const value = useMemo(() => ({ locale, setLocale, t }), [locale, setLocale, t])
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }
 
